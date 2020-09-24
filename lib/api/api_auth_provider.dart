@@ -1,18 +1,13 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:jwt/model/diagnostic/diagnostic.dart';
-import 'package:jwt/model/dropdown/drop_down.dart';
 import 'package:jwt/model/login/login_body.dart';
 import 'package:jwt/model/refreshtoken/refresh_token_body.dart';
 import 'package:jwt/model/register/register.dart';
 import 'package:jwt/model/token/token.dart';
-import 'package:jwt/model/user/user.dart';
-import 'package:jwt/storage/sharedpreferences/shared_preferences_manager.dart';
 import 'package:jwt/utils/dio_logging_interceptors.dart';
-import 'package:http/http.dart' as http;
 
 class ApiAuthProvider {
   final Dio _dio = Dio();
@@ -25,6 +20,21 @@ class ApiAuthProvider {
 
     _dio.interceptors.add(DioLoggingInterceptors(_dio));
   }
+
+  // Future<DropDown> dropDownItem() async {
+  //   try {
+  //     final response = await _dio.get(
+  //       'select_projects',
+  //       options: Options(headers: {
+  //         'requirestoken': true,
+  //       }),
+  //     );
+  //     return DropDown.fromJson(response.data);
+  //   } catch (error, stacktrace) {
+  //     _printError(error, stacktrace);
+  //     return DropDown.withError('$error');
+  //   }
+  // }
 
   Future<Diagnostic> registerUser(Register register) async {
     try {
@@ -95,7 +105,7 @@ class ApiAuthProvider {
   //           return status < 500;
   //         },
   //         headers: {
-  //           'requirestoken': true,
+  // 'requirestoken': true,
   //         },
   //       ),
   //     );
@@ -123,8 +133,8 @@ class ApiAuthProvider {
 //     final response = await http.get(
 //         'https://project.bintorobuild.co.id/api/v2/select_projects',
 //         headers: {
-//           HttpHeaders.authorizationHeader:
-//               "$SharedPreferencesManager.keyAccessToken",
+  // HttpHeaders.authorizationHeader:
+  //     "$SharedPreferencesManager.keyAccessToken",
 //         });
 //     final responseJson = json.decode(response.body);
 //     return Welcome.fromJson(responseJson);
